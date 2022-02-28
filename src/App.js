@@ -4,7 +4,7 @@ import Upload from "./Upload";
 function App() {
   return (
     <div className="App">
-      Hello
+      Teknoland Production
       <Upload />
     </div>
   );
