@@ -1,12 +1,12 @@
 import React from "react";
 // import { Link } from "react-router-dom";
 
-const Card = ({ image, name, techno, vinyl, id }) => {
+const Card = ({ image, artists_name, techno, vinyl, id }) => {
   return (
     <div className="max-w-sm overflow-hidden rounded shadow-lg">
-      <img className="w-full" src={image} alt={name} />
+      <img className="w-full" src={image} alt={artists_name} />
       <div className="px-6 py-4">
-        <div className="mb-2 text-xl font-bold">{name}</div>
+        <div className="mb-2 text-xl font-bold">{artists_name}</div>
       </div>
       <div className="px-6 pt-4 pb-2">
         <span className="inline-block px-3 py-1 mb-2 mr-2 text-sm font-semibold text-gray-700 bg-gray-200 rounded-full">
