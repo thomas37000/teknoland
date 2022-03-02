@@ -1,11 +1,10 @@
 import "./App.css";
-import Upload from "./Upload";
+import ReactRouter from "./router/ReactRouter";
 
 function App() {
   return (
     <div className="App">
-      Teknoland Production
-      <Upload />
+      <ReactRouter />
     </div>
   );
 }
