@@ -9,9 +9,10 @@ import Card from "../components/Card";
 function Home() {
   const [artist, setArtist] = useState([]);
   console.log("data", artist);
+  const [loading, setLoading] = useState(true);
 
   const usersCollectionRef = collection(db, "artists");
-  const userQuery = query(usersCollectionRef, orderBy("artists_name", "asc"));
+  const userQuery = query(usersCollectionRef, orderBy("artist_name", "asc"));
 
   // récupérer les données du Firestore avec snapshot
   function getCards() {
@@ -30,7 +31,12 @@ function Home() {
 
   useEffect(() => {
     getCards();
-  }, []);
+    setLoading(false);
+  }, [loading]);
+
+  if (loading) {
+    return <h1>loading firebase data...</h1>;
+  }
 
   return (
     <div>
@@ -38,10 +44,8 @@ function Home() {
         Teknoland Production
       </h1>
       <Upload />
-      {artist &&
-        artist.map((all, index) => {
-          <Card key={index} {...all} />;
-        })}
+
+      {artist && artist.map((all, index) => <Card key={index} {...all} />)}
     </div>
   );
 }
