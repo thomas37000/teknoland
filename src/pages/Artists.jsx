@@ -38,7 +38,10 @@ const Artists = () => {
 
   return (
     <div>
-      {artist && artist.map((all, index) => <CardArtist key={index} {...all} />)}
+      <div className="flex flex-wrap justify-around mt-10">
+        {artist &&
+          artist.map((all, index) => <CardArtist key={index} {...all} />)}{" "}
+      </div>
     </div>
   );
 };
