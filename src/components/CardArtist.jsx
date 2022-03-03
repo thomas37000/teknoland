@@ -1,7 +1,7 @@
 import React from "react";
 // import { Link } from "react-router-dom";
 
-const Card = ({ image, artist_name, techno, vinyl, id }) => {
+const CardArtist = ({ image, artist_name, techno, vinyl, id }) => {
   return (
     <div className="max-w-sm overflow-hidden rounded shadow-lg">
       <img className="w-full" src={image} alt={artist_name} />
@@ -28,4 +28,4 @@ const Card = ({ image, artist_name, techno, vinyl, id }) => {
   );
 };
 
-export default Card;
+export default CardArtist;

@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { collection, onSnapshot } from "firebase/firestore";
 import { query, orderBy } from "firebase/firestore";
 import { db } from "../firebase/config";
-import Card from "../components/Card";
+import CardArtist from "../components/CardArtist";
 
 const Artists = () => {
   const [artist, setArtist] = useState([]);
@@ -38,7 +38,7 @@ const Artists = () => {
 
   return (
     <div>
-      {artist && artist.map((all, index) => <Card key={index} {...all} />)}
+      {artist && artist.map((all, index) => <CardArtist key={index} {...all} />)}
     </div>
   );
 };
