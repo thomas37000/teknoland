@@ -5,6 +5,7 @@ import Discography from "../pages/Discography";
 import Navbar from "../components/Navbar";
 import Contact from "../pages/Contact";
 import Artists from "../pages/Artists";
+import Profil from "../pages/Profil";
 import Home from "../pages/Home";
 
 const ReactRouter = () => {
@@ -17,6 +18,9 @@ const ReactRouter = () => {
         <Route exact path="/vinyl/:id" element={<CardVinylById />} />
         <Route exact path="/artists" element={<Artists />} />
         <Route exact path="/contact" element={<Contact />} />
+        <Route exact path="/profil" element={<Profil />} />
+        {/* <Route path="/sign-up" element={< />} />
+        <Route path="/log-in" element={< />} /> */}
       </Routes>
     </Router>
   );

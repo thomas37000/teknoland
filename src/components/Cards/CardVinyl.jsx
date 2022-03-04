@@ -1,7 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const CardVinyl = ({ artist, image_vinyl, style, vinyl_name, reference, id }) => {
+const CardVinyl = ({
+  artist,
+  image_vinyl,
+  style,
+  vinyl_name,
+  reference,
+  id,
+}) => {
   return (
     <div className="max-w-xs overflow-hidden rounded shadow-lg">
       <img className="w-full" src={image_vinyl} alt={vinyl_name} />

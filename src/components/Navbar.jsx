@@ -45,13 +45,37 @@ const Navbar = () => {
           >
             Artists
           </Link>
-          
 
           <Link
             to="/contact"
-            className="block mt-4 text-green-500 lg:inline-block lg:mt-0 hover:text-white"
+            className="block mt-4 mr-4 text-green-500 lg:inline-block lg:mt-0 hover:text-white"
           >
             Contact
+          </Link>
+
+          <Link
+            to="/login"
+            className="block mt-4 mr-4 text-white lg:inline-block lg:mt-0 hover:text-red-500"
+          >
+            Login
+          </Link>
+
+          <Link
+            to="/sign-up"
+            className="block mt-4 mr-4 text-white lg:inline-block lg:mt-0 hover:text-red-500"
+          >
+            Sign up
+          </Link>
+
+          <Link
+            to="/profil"
+            className="block mt-4 mr-4 text-white lg:inline-block lg:mt-0 hover:text-red-500"
+          >
+            <img
+              className="inline object-cover w-6 h-6 rounded-full"
+              src="https://buildyourspechere.com/wp-content/uploads/2020/10/placeholder-image-person-jpg.jpg"
+              alt="profil page"
+            />
           </Link>
         </div>
       </div>
