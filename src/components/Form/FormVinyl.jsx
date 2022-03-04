@@ -22,7 +22,7 @@ const FormVinyl = ({
           <div className="w-full px-3 md:w-1/2">
             <label
               className="block mb-2 text-xs font-bold tracking-wide text-gray-700 uppercase"
-              for="vinyle_name"
+              htmlFor="vinyle_name"
             >
               vinyl_name <span className="text-red-400">*</span>
             </label>
@@ -32,13 +32,14 @@ const FormVinyl = ({
               type="text"
               value={vinyl_name}
               placeholder="Techno for ever"
+              required
             />
           </div>
 
           <div className="w-full px-3 md:w-1/2">
             <label
               className="block mb-2 text-xs font-bold tracking-wide text-gray-700 uppercase"
-              for="artist"
+              htmlFor="artist"
             >
               reference <span className="text-red-400">*</span>
             </label>
@@ -48,6 +49,7 @@ const FormVinyl = ({
               type="text"
               value={reference}
               placeholder="Teknoland 03"
+              required
             />
           </div>
         </div>
@@ -55,7 +57,7 @@ const FormVinyl = ({
           <div className="w-full px-3 md:w-1/2">
             <label
               className="block mb-2 text-xs font-bold tracking-wide text-gray-700 uppercase"
-              for="artist"
+              htmlFor="artist"
             >
               Artist <span className="text-red-400">*</span>
             </label>
@@ -65,13 +67,14 @@ const FormVinyl = ({
               type="text"
               value={artist}
               placeholder="Primtik"
+              required
             />
           </div>
 
           <div className="w-full px-3 md:w-1/2">
             <label
               className="block mb-2 text-xs font-bold tracking-wide text-gray-700 uppercase"
-              for="grid-state"
+              htmlFor="grid-state"
             >
               Techno(s) style(s) <span className="text-red-400">*</span>
             </label>
@@ -100,7 +103,7 @@ const FormVinyl = ({
           <div className="w-full px-3 md:w-1/2">
             <label
               className="block mb-2 text-xs font-bold tracking-wide text-gray-700 uppercase"
-              for="title"
+              htmlFor="title"
             >
               title 1 <span className="text-red-400">*</span>
             </label>
@@ -110,13 +113,14 @@ const FormVinyl = ({
               type="text"
               value={title}
               placeholder="Raves"
+              required
             />
           </div>
 
           <div className="w-full px-3 md:w-1/2">
             <label
               className="block mb-2 text-xs font-bold tracking-wide text-gray-700 uppercase"
-              for="title 2"
+              htmlFor="title 2"
             >
               title 2 <span className="text-red-400">*</span>
             </label>
@@ -126,6 +130,7 @@ const FormVinyl = ({
               type="text"
               value={title2}
               placeholder="23"
+              required
             />
           </div>
         </div>
@@ -134,7 +139,7 @@ const FormVinyl = ({
           <div className="w-full px-3 md:w-1/2">
             <label
               className="block mb-2 text-xs font-bold tracking-wide text-gray-700 uppercase"
-              for="title3"
+              htmlFor="title3"
             >
               title <span className="text-red-400">*</span>
             </label>
@@ -144,13 +149,14 @@ const FormVinyl = ({
               type="text"
               value={title3}
               placeholder="Teknival"
+              required
             />
           </div>
 
           <div className="w-full px-3 md:w-1/2">
             <label
               className="block mb-2 text-xs font-bold tracking-wide text-gray-700 uppercase"
-              for="title4"
+              htmlFor="title4"
             >
               title 4 <span className="text-red-400">*</span>
             </label>
@@ -160,15 +166,16 @@ const FormVinyl = ({
               type="text"
               value={title4}
               placeholder="mix the underground"
+              required
             />
           </div>
         </div>
 
         <div className="flex flex-wrap justify-center mb-6">
-          <div class="mb-3 w-96">
+          <div className="mb-3 w-96">
             <label
               className="block mb-2 text-xs font-bold tracking-wide text-gray-700 uppercase"
-              for="artist"
+              htmlFor="artist"
             >
               image
             </label>
