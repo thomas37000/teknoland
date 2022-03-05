@@ -2,17 +2,14 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const CardVinyl = ({
-  artist,
+  artists,
   image_vinyl,
   style,
   vinyl_name,
   reference,
+  deleteVinyl,
   id,
 }) => {
-  // const deleteVinyl = (id) => {
-  //   deleteDoc(doc(db, "vinyls", id));
-  // };
-
   return (
     <div className="max-w-xs overflow-hidden rounded shadow-lg">
       <img className="w-full" src={image_vinyl} alt={vinyl_name} />
@@ -20,7 +17,7 @@ const CardVinyl = ({
         <div className="mb-2 text-2xl font-bold">{vinyl_name}</div>
       </div>
       <div className="px-6 py-4">
-        <div className="mb-2 text-xl font-bold text-green-800">{artist}</div>
+        <div className="mb-2 text-xl font-bold text-green-800">{artists}</div>
       </div>
       <div className="px-6 py-4">
         <div className="mb-2 text-lg font-bold text-green-600">{reference}</div>
@@ -36,6 +33,14 @@ const CardVinyl = ({
             <div key={i}>{data}</div>
           ))}
         </span>
+      </div>
+      <div>
+        <button
+          onClick={deleteVinyl}
+          className="px-4 py-2 font-bold text-white bg-red-500 rounded"
+        >
+          Delete
+        </button>
       </div>
       <div>
         <Link

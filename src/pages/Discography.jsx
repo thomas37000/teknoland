@@ -1,12 +1,18 @@
 import { useState, useEffect } from "react";
-import { collection, onSnapshot } from "firebase/firestore";
-import { query, orderBy } from "firebase/firestore";
+import {
+  collection,
+  deleteDoc,
+  doc,
+  query,
+  onSnapshot,
+  orderBy,
+} from "firebase/firestore";
 import { db } from "../firebase/config";
 import CardVinyl from "../components/Cards/CardVinyl";
 
 const Discography = () => {
   const [vinyls, setVinyls] = useState([]);
-  // console.log("data", vinyls);
+  console.log("data", vinyls);
   const [loading, setLoading] = useState(true);
 
   const vinylsCollectionRef = collection(db, "vinyls");
@@ -32,16 +38,28 @@ const Discography = () => {
     setLoading(false);
   }, [loading]);
 
+  const deleteVinyl = async (id) => {
+    const vinylDoc = deleteDoc(doc(db, "vinyls", id));
+    await deleteDoc(vinylDoc);
+  };
+
   if (loading) {
     return <h1>loading firebase data...</h1>;
   }
 
   return (
     <div>
-      <h3>all the vinyls from Teknoland Production</h3>
+      <h3>vinyl the vinyls from Teknoland Production</h3>
       <div className="flex flex-wrap justify-around mt-10">
         {vinyls &&
-          vinyls.map((all, index) => <CardVinyl key={index} {...all} />)}{" "}
+          vinyls.map((vinyl, index) => (
+            <CardVinyl
+              key={index}
+              {...vinyl}
+              // deleteVinyl={deleteVinyl}
+              onClick={() => deleteVinyl(vinyl.id)}
+            />
+          ))}{" "}
       </div>
     </div>
   );
