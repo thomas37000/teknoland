@@ -9,6 +9,10 @@ const CardVinyl = ({
   reference,
   id,
 }) => {
+  // const deleteVinyl = (id) => {
+  //   deleteDoc(doc(db, "vinyls", id));
+  // };
+
   return (
     <div className="max-w-xs overflow-hidden rounded shadow-lg">
       <img className="w-full" src={image_vinyl} alt={vinyl_name} />
