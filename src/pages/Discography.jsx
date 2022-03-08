@@ -1,12 +1,5 @@
 import { useState, useEffect } from "react";
-import {
-  collection,
-  deleteDoc,
-  doc,
-  query,
-  onSnapshot,
-  orderBy,
-} from "firebase/firestore";
+import { collection, query, onSnapshot, orderBy } from "firebase/firestore";
 import { db } from "../firebase/config";
 import CardVinyl from "../components/Cards/CardVinyl";
 
@@ -38,11 +31,6 @@ const Discography = () => {
     setLoading(false);
   }, [loading]);
 
-  const deleteVinyl = async (id) => {
-    const vinylDoc = deleteDoc(doc(db, "vinyls", id));
-    await deleteDoc(vinylDoc);
-  };
-
   if (loading) {
     return <h1>loading firebase data...</h1>;
   }
@@ -53,12 +41,7 @@ const Discography = () => {
       <div className="flex flex-wrap justify-around mt-10">
         {vinyls &&
           vinyls.map((vinyl, index) => (
-            <CardVinyl
-              key={index}
-              {...vinyl}
-              // deleteVinyl={deleteVinyl}
-              onClick={() => deleteVinyl(vinyl.id)}
-            />
+            <CardVinyl key={index} {...vinyl} deleteVinyl={vinyl} />
           ))}{" "}
       </div>
     </div>

@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useState, useEffect } from "react";
-import {  useParams } from "react-router-dom";
-import { collection, onSnapshot } from "firebase/firestore";
+import { useParams } from "react-router-dom";
+import { collection, onSnapshot, snapshot } from "firebase/firestore";
 import { query, orderBy } from "firebase/firestore";
 import { db } from "../../firebase/config";
 
@@ -13,7 +13,7 @@ const CardVinylById = () => {
   const [error, setError] = useState(null);
 
   const usersCollectionRef = collection(db, "vinyls");
-  const userQuery = query(usersCollectionRef, orderBy("reference", "asc"));
+  const userQuery = query(usersCollectionRef, orderBy("reference"));
 
   const { artist, image_vinyl, style, vinyl_name, reference } = vinyls;
 
@@ -21,23 +21,35 @@ const CardVinylById = () => {
   // LIFE CYCLE
   // ---------------------------------------------------------------------------
 
-  function getCards() {
-    onSnapshot(userQuery, (snapshot) => {
-      setVinyls(
-        snapshot.docs.map((doc) => {
-          return {
-            id: doc.id,
-            viewing: false,
-            ...doc.data(),
-          };
-        })
-      );
-    });
-  }
+  // function getCards() {
+  //   onSnapshot(userQuery, (snapshot) => {
+  //     setVinyls(
+  //       snapshot.docs.map((doc) => {
+  //         return {
+  //           id: doc.id,
+  //           viewing: false,
+  //           ...doc.data(),
+  //         };
+  //       })
+  //     );
+  //   });
+  // }
 
   useEffect(() => {
-    getCards();
+    //  const dbRef = ref(db);
+
+    db.child(`vinyls/${id}`)
+      .get()
+      .then((snapshot) => {
+        if (snapshot.exists()) {
+          setVinyls({ ...snapshot.val() });
+        } else {
+          setVinyls([]);
+        }
+      });
   }, [id]);
+
+  console.log(vinyls);
 
   // ---------------------------------------------------------------------------
   //
@@ -59,9 +71,9 @@ const CardVinylById = () => {
       </div>
       <div className="px-6 pt-4 pb-2">
         <span className="inline-block px-3 py-1 mb-2 mr-2 text-sm font-semibold text-gray-700 bg-gray-200 rounded-full">
-          {style.map((data, i) => (
+          {/* {style.map((data, i) => (
             <div key={i}>{data}</div>
-          ))}
+          ))} */}
         </span>
       </div>
     </div>

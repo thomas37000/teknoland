@@ -1,5 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { db } from "../../firebase/config";
+import { deleteDoc, doc } from "firebase/firestore";
 
 const CardVinyl = ({
   artists,
@@ -7,9 +9,15 @@ const CardVinyl = ({
   style,
   vinyl_name,
   reference,
-  deleteVinyl,
+  vinyl,
   id,
 }) => {
+  const deleteVinyl = async () => {
+    // await db.collection("vinyls").doc(vinyl.id).delete();
+    const vinylDoc = deleteDoc(doc(db, "vinyls", vinyl.id));
+    await deleteDoc(vinylDoc);
+  };
+
   return (
     <div className="max-w-xs overflow-hidden rounded shadow-lg">
       <img className="w-full" src={image_vinyl} alt={vinyl_name} />
@@ -36,7 +44,7 @@ const CardVinyl = ({
       </div>
       <div>
         <button
-          onClick={deleteVinyl}
+          onClick={() => deleteVinyl()}
           className="px-4 py-2 font-bold text-white bg-red-500 rounded"
         >
           Delete
