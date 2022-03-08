@@ -76,6 +76,9 @@ const Navbar = () => {
               src="https://buildyourspechere.com/wp-content/uploads/2020/10/placeholder-image-person-jpg.jpg"
               alt="profil page"
             />
+            <div className="block mt-4 ml-2 mr-4 text-yellow-300 lg:inline-block lg:mt-0">
+              {localStorage.getItem("name")}
+            </div>
           </Link>
         </div>
       </div>

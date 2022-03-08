@@ -9,7 +9,7 @@ const SignIn = () => {
         onClick={signInWithGoogle}
         className="px-4 py-2 font-bold text-white bg-red-500 rounded"
       >
-        sign in
+        sign up with Google
       </button>
     </div>
   );
