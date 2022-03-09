@@ -1,7 +1,21 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { Auth } from "../../firebase/config";
+import { signOut } from "firebase/auth";
+import LogOut from "../Auth/LogOut";
 
 const Navbar = () => {
+  const navigate = useNavigate();
+
+  const signOut = async () => {
+    try {
+      await signOut(Auth);
+      navigate("/");
+    } catch {
+      alert("vider votre cache internet.");
+    }
+  };
+
   return (
     <nav className="flex flex-wrap items-center justify-between p-4 bg-zinc-800">
       <div className="flex items-center flex-shrink-0 mr-6 text-white">
@@ -54,20 +68,6 @@ const Navbar = () => {
           </Link>
 
           <Link
-            to="/login"
-            className="block mt-4 mr-4 text-white lg:inline-block lg:mt-0 hover:text-red-500"
-          >
-            Login
-          </Link>
-
-          <Link
-            to="/sign-up"
-            className="block mt-4 mr-4 text-white lg:inline-block lg:mt-0 hover:text-red-500"
-          >
-            Sign up
-          </Link>
-
-          <Link
             to="/profil"
             className="block mt-4 mr-4 text-white lg:inline-block lg:mt-0 hover:text-red-500"
           >
@@ -79,6 +79,7 @@ const Navbar = () => {
             <div className="block mt-4 ml-2 mr-4 text-yellow-300 lg:inline-block lg:mt-0">
               {localStorage.getItem("name")}
             </div>
+            {/* <LogOut signOut={signOut} /> */}
           </Link>
         </div>
       </div>
