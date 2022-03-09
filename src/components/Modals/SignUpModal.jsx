@@ -1,16 +1,10 @@
 import React, { useState } from "react";
 
 const SignUpModal = () => {
-  const [showModal, setShowModal] = useState(false);
+  const [showModal, setShowModal] = useState(true);
   return (
     <>
-      <button
-        className="px-6 py-3 mb-1 mr-1 font-bold text-black bg-blue-200 rounded shadow outline-none active:bg-blue-500 hover:shadow-lg focus:outline-none"
-        type="button"
-        onClick={() => setShowModal(true)}
-      >
-        Sign Up
-      </button>
+     
       {showModal ? (
         <>
           <div className="fixed inset-0 z-50 flex items-center justify-center overflow-x-hidden overflow-y-auto outline-none focus:outline-none">

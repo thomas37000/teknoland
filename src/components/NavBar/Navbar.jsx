@@ -1,20 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { Auth } from "../../firebase/config";
-import { signOut } from "firebase/auth";
-import LogOut from "../Auth/LogOut";
+import { UserContext } from "../../context/UserContext";
 
 const Navbar = () => {
+  const { toggleModals } = useContext(UserContext);
   const navigate = useNavigate();
-
-  const signOut = async () => {
-    try {
-      await signOut(Auth);
-      navigate("/");
-    } catch {
-      alert("vider votre cache internet.");
-    }
-  };
 
   return (
     <nav className="flex flex-wrap items-center justify-between p-4 bg-zinc-800">
@@ -65,6 +55,21 @@ const Navbar = () => {
             className="block mt-4 mr-4 text-green-500 lg:inline-block lg:mt-0 hover:text-white"
           >
             Contact
+          </Link>
+
+          <Link
+            to="/sign-up"
+            className="block mt-4 mr-4 text-white lg:inline-block lg:mt-0 hover:text-red-500"
+            onClick={() => toggleModals("signUp")}
+          >
+            Sign-up
+          </Link>
+          <Link
+            to="/log-in"
+            className="block mt-4 mr-4 text-white lg:inline-block lg:mt-0 hover:text-red-500"
+            onClick={() => toggleModals("signIn")}
+          >
+            Login
           </Link>
 
           <Link

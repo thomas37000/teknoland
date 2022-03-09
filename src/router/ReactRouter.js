@@ -1,30 +1,20 @@
-import React, { useState } from "react";
+import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { UserContextProvider } from "../context/UserContext";
 import CardVinylById from "../components/Cards/CardVinylById";
-import Discography from "../pages/Discography";
+import SignUpModal from "../components/Modals/SignUpModal";
+import SignInModal from "../components/Modals/SignInModal";
 import Navbar from "../components/NavBar/Navbar";
+import Discography from "../pages/Discography";
 import Contact from "../pages/Contact";
 import Artists from "../pages/Artists";
 import Profil from "../pages/Profil";
 import Home from "../pages/Home";
-import SignIn from "../components/Auth/SignIn";
-import { Auth } from "../firebase/config";
-import NavbarLogOut from "../components/NavBar/NavbarLogOut";
 
 const ReactRouter = () => {
-  const [isSign, setIsSign] = useState(true);
-
-  Auth.onAuthStateChanged((user) => {
-    if (user) {
-      return setIsSign(true);
-    } else {
-      setIsSign(false);
-    }
-  });
-
-  if (isSign === true) {
-    return (
-      <Router>
+  return (
+    <Router>
+      <UserContextProvider>
         <Navbar />
         <Routes>
           <Route exact path="/" element={<Home />} />
@@ -33,27 +23,12 @@ const ReactRouter = () => {
           <Route path="/artists" element={<Artists />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/profil" element={<Profil />} />
-          {/*  <Route path="/log-in" element={< />} /> */}
+          <Route path="/sign-up" element={<SignUpModal />} />
+          <Route path="/log-in" element={<SignInModal />} />
         </Routes>
-      </Router>
-    );
-  } else {
-    return (
-      <Router>
-        <NavbarLogOut />
-        <Routes>
-          <Route exact path="/" element={<Home />} />
-          <Route path="/discography" element={<Discography />} />
-          <Route path="/vinyl/:id" element={<CardVinylById />} />
-          <Route path="/artists" element={<Artists />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/profil" element={<Profil />} />
-          <Route path="/sign-up" element={<SignIn />} />
-          {/*  <Route path="/log-in" element={< />} /> */}
-        </Routes>
-      </Router>
-    );
-  }
+      </UserContextProvider>
+    </Router>
+  );
 };
 
 export default ReactRouter;
