@@ -3,8 +3,10 @@ import { useNavigate } from "react-router-dom";
 import { UserContext } from "../../context/UserContext";
 
 const SignInModal = () => {
-  const { modalState, toggleModals, signInModal } = useContext(UserContext);
-
+  // ---------------------------------------------------------------------------
+  // STATES
+  // ---------------------------------------------------------------------------
+  const { modalState, toggleModals, signInContext } = useContext(UserContext);
 
   const navigate = useNavigate();
 
