@@ -1,11 +1,20 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import { useNavigate } from "react-router-dom";
+import { UserContext } from "../../context/UserContext";
 
 const SignUpModal = () => {
-  const [showModal, setShowModal] = useState(true);
+  const { modalState, toggleModals, signUpModal } = useContext(UserContext);
+
+  const navigate = useNavigate();
+
+  const closeModal = () => {
+    toggleModals("close");
+    navigate("/");
+  };
+
   return (
     <>
-     
-      {showModal ? (
+      {modalState.signUpModal && (
         <>
           <div className="fixed inset-0 z-50 flex items-center justify-center overflow-x-hidden overflow-y-auto outline-none focus:outline-none">
             <div className="relative w-auto max-w-3xl mx-auto my-6">
@@ -14,7 +23,7 @@ const SignUpModal = () => {
                   <h3 className="text-3xl font=semibold">Sign Up</h3>
                   <button
                     className="float-right text-black bg-transparent border-0"
-                    onClick={() => setShowModal(false)}
+                    onClick={() => closeModal()}
                   >
                     <span className="block w-6 h-6 py-0 text-xl text-black bg-gray-400 rounded-full opacity-7">
                       x
@@ -67,14 +76,14 @@ const SignUpModal = () => {
                   <button
                     className="px-6 py-2 mb-1 mr-1 text-sm font-bold text-red-500 uppercase outline-none background-transparent focus:outline-none"
                     type="button"
-                    onClick={() => setShowModal(false)}
+                    onClick={() => closeModal()}
                   >
                     Close
                   </button>
                   <button
                     className="px-6 py-3 mb-1 mr-1 text-sm font-bold text-white uppercase bg-green-500 rounded shadow outline-none active:bg-yellow-700 hover:shadow-lg focus:outline-none"
                     type="button"
-                    onClick={() => setShowModal(false)}
+                    onClick={() => closeModal()}
                   >
                     Submit
                   </button>
@@ -83,7 +92,7 @@ const SignUpModal = () => {
             </div>
           </div>
         </>
-      ) : null}
+      )}
     </>
   );
 };
