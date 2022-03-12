@@ -1,10 +1,22 @@
 import React, { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { Auth } from "../../firebase/config";
+import { signOut } from "firebase/auth";
 import { UserContext } from "../../context/UserContext";
+import LogOut from "../Auth/LogOut";
 
 const Navbar = () => {
   const { toggleModals } = useContext(UserContext);
   const navigate = useNavigate();
+
+  const logout = async () => {
+    try {
+      await signOut(Auth);
+      navigate("/");
+    } catch {
+      alert("vider votre cache internet.");
+    }
+  };
 
   return (
     <nav className="flex flex-wrap items-center justify-between p-4 bg-zinc-800">
@@ -73,7 +85,7 @@ const Navbar = () => {
           </Link>
 
           <Link
-            to="/profil"
+            to="/private/profil"
             className="block mt-4 mr-4 text-white lg:inline-block lg:mt-0 hover:text-red-500"
           >
             <img
@@ -81,10 +93,8 @@ const Navbar = () => {
               src="https://buildyourspechere.com/wp-content/uploads/2020/10/placeholder-image-person-jpg.jpg"
               alt="profil page"
             />
-            <div className="block mt-4 ml-2 mr-4 text-yellow-300 lg:inline-block lg:mt-0">
-              {localStorage.getItem("name")}
-            </div>
-            {/* <LogOut signOut={signOut} /> */}
+
+            <LogOut logout={logout} />
           </Link>
         </div>
       </div>

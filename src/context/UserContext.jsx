@@ -9,8 +9,8 @@ import { Auth } from "../firebase/config";
 export const UserContext = createContext();
 
 export function UserContextProvider(props) {
-  const signUpContext = (email, name, pwd) =>
-    createUserWithEmailAndPassword(Auth, name, email, pwd);
+  const signUpContext = (email, pwd) =>
+    createUserWithEmailAndPassword(Auth, email, pwd);
 
   const signInContext = (email, pwd) =>
     signInWithEmailAndPassword(Auth, email, pwd);

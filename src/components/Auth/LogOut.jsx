@@ -1,11 +1,11 @@
 import React from "react";
 
-const LogOut = ({ signOut }) => {
+const LogOut = ({ logout }) => {
   return (
     <button
       type="button"
-      onClick={signOut}
-      className="px-4 py-2 font-bold text-white bg-red-500 rounded"
+      onClick={logout}
+      className="px-4 py-2 font-bold text-red-500"
     >
       logout
     </button>

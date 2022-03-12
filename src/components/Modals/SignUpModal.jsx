@@ -1,6 +1,8 @@
 import React, { useState, useContext, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { UserContext } from "../../context/UserContext";
+import eyeClose from "../icons/eye-close.svg";
+import eye from "../icons/eye.svg";
 
 const SignUpModal = () => {
   // ---------------------------------------------------------------------------
@@ -10,11 +12,23 @@ const SignUpModal = () => {
 
   const [validationMp, setValidationMp] = useState("");
   const [validationEmail, setValidationEmail] = useState("");
+  const [mp, setMp] = useState(false);
+  const [mp2, setMp2] = useState(false);
+
+  const togglePassword = () => {
+    setMp(mp ? false : true);
+  };
+
+  const togglePasswordRepeat = () => {
+    setMp2(mp2 ? false : true);
+  };
 
   const inputs = useRef([]);
   const currentRef = inputs.current;
 
+  // ---------------------------------------------------------------------------
   // si il existe et qu'il est pas déjà dans le tableau inputs => je le rajoute & push
+  // ---------------------------------------------------------------------------
   const addInputs = (el) => {
     if (el && !currentRef.includes(el)) {
       currentRef.push(el);
@@ -27,27 +41,32 @@ const SignUpModal = () => {
   const handleForm = async (e) => {
     e.preventDefault();
 
-    if ((currentRef[2].value.length || currentRef[3].value.length) < 6) {
+    // ---------------------------------------------------------------------------
+    // if(error.code === 'auth/invalid-password')
+    // ---------------------------------------------------------------------------
+    if ((currentRef[1].value.length || currentRef[2].value.length) < 6) {
       setValidationMp("6 charactères minimum !");
       return;
-    } else if (currentRef[2].value !== currentRef[3].value) {
+    } else if (currentRef[1].value !== currentRef[2].value) {
       setValidationMp("Mot de Passe incorrect !");
       return;
     }
+
     try {
+      // eslint-disable-next-line no-unused-vars
       const createUser = await signUpContext(
         currentRef[0].value,
         currentRef[1].value
       );
-      console.log("new user", createUser);
+      // console.log("new user", createUser);
 
       formRef.current.reset();
       toggleModals("close");
+      // ---------------------------------------------------------------------------
       // quand user s'inscrit redirection vers la route privée
+      // ---------------------------------------------------------------------------
       navigate("/private/profil");
     } catch (error) {
-      // voir les érreurs venant de Firebase dans la console au submit
-      // console.dir(error);}
       if (error.code === "auth/invalid-email") {
         setValidationEmail("Email format invalide !");
       }
@@ -58,7 +77,9 @@ const SignUpModal = () => {
     }
   };
 
+  // ---------------------------------------------------------------------------
   // efface les méssages d'érreurs et ferme le modale avec toggleModals
+  // ---------------------------------------------------------------------------
   const closeModal = () => {
     setValidationMp("");
     setValidationEmail("");
@@ -91,17 +112,6 @@ const SignUpModal = () => {
                     ref={formRef}
                   >
                     <div>
-                      <label className="block mb-1 text-sm font-bold text-black">
-                        Name
-                      </label>
-
-                      <input
-                        className="w-full px-1 py-2 text-black border rounded shadow appearance-none"
-                        ref={addInputs}
-                      />
-                    </div>
-
-                    <div>
                       <label className="block mt-3 mb-1 text-sm font-bold text-black">
                         Email Address
                       </label>
@@ -123,10 +133,29 @@ const SignUpModal = () => {
                       <input
                         ref={addInputs}
                         className="w-full px-1 py-2 text-black border rounded shadow appearance-none"
-                        type="password"
+                        type={mp ? "text" : "password"}
                         name="pwd"
                         autoComplete="on"
                         required
+                      />
+                      <img
+                        onClick={togglePassword}
+                        src={mp ? eye : eyeClose}
+                        alt={
+                          mp
+                            ? "affiche le mot de passe"
+                            : "cache le mot de passe"
+                        }
+                        style={{
+                          position: "relative",
+                          float: "right",
+                          marginTop: "10px",
+                          marginRight: "10px",
+                          marginBottom: "0px",
+                          marginLeft: "-30px",
+                          width: "20px",
+                          opacity: "0.6",
+                        }}
                       />
                       <p className="text-red-500">{validationMp}</p>
                     </div>
@@ -141,10 +170,29 @@ const SignUpModal = () => {
                       <input
                         ref={addInputs}
                         className="w-full px-1 py-2 text-black border rounded shadow appearance-none"
-                        type="password"
+                        type={mp2 ? "text" : "password"}
                         name="pwd"
                         autoComplete="on"
                         required
+                      />
+                      <img
+                        onClick={togglePasswordRepeat}
+                        src={mp2 ? eye : eyeClose}
+                        alt={
+                          mp2
+                            ? "affiche le mot de passe"
+                            : "cache le mot de passe"
+                        }
+                        style={{
+                          position: "relative",
+                          float: "right",
+                          marginTop: "10px",
+                          marginRight: "10px",
+                          marginBottom: "0px",
+                          marginLeft: "-30px",
+                          width: "20px",
+                          opacity: "0.6",
+                        }}
                       />
                     </div>
                     <p className="text-red-500">{validationMp}</p>

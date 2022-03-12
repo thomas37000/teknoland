@@ -24,7 +24,6 @@ const ReactRouter = () => {
           <Route path="/vinyl/:id" element={<CardVinylById />} />
           <Route path="/artists" element={<Artists />} />
           <Route path="/contact" element={<Contact />} />
-          <Route path="/profil" element={<Profil />} />
           <Route path="/sign-up" element={<SignUpModal />} />
           <Route path="/log-in" element={<SignInModal />} />
           <Route path="/private" element={<Private />}>
