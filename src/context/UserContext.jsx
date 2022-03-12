@@ -9,6 +9,10 @@ import { Auth } from "../firebase/config";
 export const UserContext = createContext();
 
 export function UserContextProvider(props) {
+  // ---------------------------------------------------------------------------
+  // on ne peut pas enregistrer d'autre champs que email et mot de passe avec
+  // avec Firebase Authentification
+  // ---------------------------------------------------------------------------
   const signUpContext = (email, pwd) =>
     createUserWithEmailAndPassword(Auth, email, pwd);
 

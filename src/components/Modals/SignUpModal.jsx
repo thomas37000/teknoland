@@ -92,127 +92,130 @@ const SignUpModal = () => {
       {modalState.signUpModal && (
         <>
           <div className="fixed inset-0 z-50 flex items-center justify-center overflow-x-hidden overflow-y-auto outline-none focus:outline-none">
-            <div className="relative w-auto max-w-3xl mx-auto my-6">
-              <div className="relative flex flex-col w-full bg-white border-0 rounded-lg shadow-lg outline-none focus:outline-none">
-                <div className="flex items-start justify-between p-5 border-b border-gray-300 border-solid rounded-t ">
-                  <h3 className="text-3xl font=semibold">Sign Up</h3>
-                  <button
-                    className="float-right text-black bg-transparent border-0"
-                    onClick={() => closeModal()}
-                  >
-                    <span className="block w-6 h-6 py-0 text-xl text-black bg-gray-400 rounded-full opacity-7">
-                      x
-                    </span>
-                  </button>
-                </div>
-                <div className="relative flex-auto p-6">
-                  <form
-                    className="w-full px-8 pt-6 pb-8 bg-gray-200 rounded shadow-md"
-                    onSubmit={handleForm}
-                    ref={formRef}
-                  >
-                    <div>
-                      <label className="block mt-3 mb-1 text-sm font-bold text-black">
-                        Email Address
-                      </label>
+            <div className="w-screen h-screen bg-black bg-opacity-50">
+              <div className="relative w-auto max-w-3xl mx-auto my-6">
+                <div className="relative flex flex-col w-full bg-white border-0 rounded-lg shadow-lg outline-none focus:outline-none">
+                  <div className="flex items-start justify-between p-5 border-b border-gray-300 border-solid rounded-t ">
+                    <h3 className="text-3xl font=semibold">Sign Up</h3>
+                    <button
+                      className="float-right text-black bg-transparent border-0"
+                      onClick={() => closeModal()}
+                    >
+                      <span className="block w-6 h-6 py-0 text-xl text-black opacity-70">
+                        x
+                      </span>
+                    </button>
+                  </div>
+                  <div className="relative flex-auto p-6">
+                    <form
+                      className="w-full px-8 pt-6 pb-8 bg-gray-200 rounded shadow-md"
+                      onSubmit={handleForm}
+                      ref={formRef}
+                    >
+                      <div>
+                        <label className="block mt-3 mb-1 text-sm font-bold text-black">
+                          Email Address
+                        </label>
 
-                      <input
-                        className="w-full px-1 py-2 text-black border rounded shadow appearance-none"
-                        ref={addInputs}
-                      />
-                      <p className="text-red-500">{validationEmail}</p>
-                    </div>
+                        <input
+                          className="w-full px-1 py-2 text-black border rounded shadow appearance-none"
+                          ref={addInputs}
+                          type="text"
+                        />
+                        <p className="text-red-500">{validationEmail}</p>
+                      </div>
 
-                    <div>
-                      <label
-                        htmlFor="signUpPwd"
-                        className="block mt-3 mb-1 text-sm font-bold text-black"
-                      >
-                        Create a password
-                      </label>
-                      <input
-                        ref={addInputs}
-                        className="w-full px-1 py-2 text-black border rounded shadow appearance-none"
-                        type={mp ? "text" : "password"}
-                        name="pwd"
-                        autoComplete="on"
-                        required
-                      />
-                      <img
-                        onClick={togglePassword}
-                        src={mp ? eye : eyeClose}
-                        alt={
-                          mp
-                            ? "affiche le mot de passe"
-                            : "cache le mot de passe"
-                        }
-                        style={{
-                          position: "relative",
-                          float: "right",
-                          marginTop: "10px",
-                          marginRight: "10px",
-                          marginBottom: "0px",
-                          marginLeft: "-30px",
-                          width: "20px",
-                          opacity: "0.6",
-                        }}
-                      />
+                      <div>
+                        <label
+                          htmlFor="signUpPwd"
+                          className="block mt-3 mb-1 text-sm font-bold text-black"
+                        >
+                          Create a password
+                        </label>
+                        <input
+                          ref={addInputs}
+                          className="w-full px-1 py-2 text-black border rounded shadow appearance-none"
+                          type={mp ? "text" : "password"}
+                          name="pwd"
+                          autoComplete="on"
+                          required
+                        />
+                        <img
+                          onClick={togglePassword}
+                          src={mp ? eye : eyeClose}
+                          alt={
+                            mp
+                              ? "affiche le mot de passe"
+                              : "cache le mot de passe"
+                          }
+                          style={{
+                            position: "relative",
+                            float: "right",
+                            marginTop: "10px",
+                            marginRight: "10px",
+                            marginBottom: "0px",
+                            marginLeft: "-30px",
+                            width: "20px",
+                            opacity: "0.6",
+                          }}
+                        />
+                        <p className="text-red-500">{validationMp}</p>
+                      </div>
+
+                      <div>
+                        <label
+                          htmlFor="signUpPwd"
+                          className="block mt-3 mb-1 text-sm font-bold text-black"
+                        >
+                          Repeat the password
+                        </label>
+                        <input
+                          ref={addInputs}
+                          className="w-full px-1 py-2 text-black border rounded shadow appearance-none"
+                          type={mp2 ? "text" : "password"}
+                          name="pwd"
+                          autoComplete="on"
+                          required
+                        />
+                        <img
+                          onClick={togglePasswordRepeat}
+                          src={mp2 ? eye : eyeClose}
+                          alt={
+                            mp2
+                              ? "affiche le mot de passe"
+                              : "cache le mot de passe"
+                          }
+                          style={{
+                            position: "relative",
+                            float: "right",
+                            marginTop: "10px",
+                            marginRight: "10px",
+                            marginBottom: "0px",
+                            marginLeft: "-30px",
+                            width: "20px",
+                            opacity: "0.6",
+                          }}
+                        />
+                      </div>
                       <p className="text-red-500">{validationMp}</p>
-                    </div>
 
-                    <div>
-                      <label
-                        htmlFor="signUpPwd"
-                        className="block mt-3 mb-1 text-sm font-bold text-black"
-                      >
-                        Repeat the password
-                      </label>
-                      <input
-                        ref={addInputs}
-                        className="w-full px-1 py-2 text-black border rounded shadow appearance-none"
-                        type={mp2 ? "text" : "password"}
-                        name="pwd"
-                        autoComplete="on"
-                        required
-                      />
-                      <img
-                        onClick={togglePasswordRepeat}
-                        src={mp2 ? eye : eyeClose}
-                        alt={
-                          mp2
-                            ? "affiche le mot de passe"
-                            : "cache le mot de passe"
-                        }
-                        style={{
-                          position: "relative",
-                          float: "right",
-                          marginTop: "10px",
-                          marginRight: "10px",
-                          marginBottom: "0px",
-                          marginLeft: "-30px",
-                          width: "20px",
-                          opacity: "0.6",
-                        }}
-                      />
-                    </div>
-                    <p className="text-red-500">{validationMp}</p>
-
-                    <div className="flex items-center justify-end p-6 border-t border-solid rounded-b border-blueGray-200">
-                      <button
-                        className="px-6 py-2 mb-1 mr-1 text-sm font-bold text-red-500 uppercase outline-none background-transparent focus:outline-none"
-                        type="button"
-                        onClick={() => closeModal()}
-                      >
-                        Close
-                      </button>
-                      <button
-                        className="px-6 py-3 mb-1 mr-1 text-sm font-bold text-white uppercase bg-green-500 rounded shadow outline-none active:bg-yellow-700 hover:shadow-lg focus:outline-none"
-                        type="submit"
-                      >
-                        Submit
-                      </button>
-                    </div>
-                  </form>
+                      <div className="flex items-center justify-end p-6 border-t border-solid rounded-b border-blueGray-200">
+                        <button
+                          className="px-6 py-2 mb-1 mr-1 text-sm font-bold text-red-500 uppercase outline-none background-transparent focus:outline-none"
+                          type="button"
+                          onClick={() => closeModal()}
+                        >
+                          Close
+                        </button>
+                        <button
+                          className="px-6 py-3 mb-1 mr-1 text-sm font-bold text-white uppercase bg-green-500 rounded shadow outline-none active:bg-yellow-700 hover:shadow-lg focus:outline-none"
+                          type="submit"
+                        >
+                          Submit
+                        </button>
+                      </div>
+                    </form>
+                  </div>
                 </div>
               </div>
             </div>
