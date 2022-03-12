@@ -10,6 +10,8 @@ import Contact from "../pages/Contact";
 import Artists from "../pages/Artists";
 import Profil from "../pages/Profil";
 import Home from "../pages/Home";
+import Private from "../private/Private";
+import User from "../private/user";
 
 const ReactRouter = () => {
   return (
@@ -25,6 +27,9 @@ const ReactRouter = () => {
           <Route path="/profil" element={<Profil />} />
           <Route path="/sign-up" element={<SignUpModal />} />
           <Route path="/log-in" element={<SignInModal />} />
+          <Route path="/private" element={<Private />}>
+            <Route path="/private/profil" element={<User />} />
+          </Route>
         </Routes>
       </UserContextProvider>
     </Router>
