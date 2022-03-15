@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { db } from "../../firebase/config";
 import { deleteDoc, doc } from "firebase/firestore";
 
-const CardVinyl = ({
+const CardVinylAuth = ({
   artists,
   image_vinyl,
   style,
@@ -12,6 +12,18 @@ const CardVinyl = ({
   vinyl,
   id,
 }) => {
+  // ---------------------------------------------------------------------------
+  // VINYL DELETED OK, BUT HAVE THIS ERROR MESSAGE WHEN ONCLICK
+  // index.esm2017.js:15823 Uncaught (in promise)
+  // TypeError: Cannot use 'in' operator to search for '_delegate' in undefined
+  // ---------------------------------------------------------------------------
+  const deleteVinyl = async (id) => {
+    const vinylDoc = doc(db, "vinyls", id);
+    await deleteDoc(vinylDoc)
+      .then(() => console.log("vinyl deleted !"))
+      .catch((error) => console.log(error.message));
+  };
+
   return (
     <div className="max-w-xs overflow-hidden rounded shadow-lg bg-zinc-200">
       <img className="w-full" src={image_vinyl} alt={vinyl_name} />
@@ -36,7 +48,14 @@ const CardVinyl = ({
           ))}
         </span>
       </div>
-
+      <div>
+        <button
+          onClick={() => deleteVinyl(id)}
+          className="px-4 py-2 font-bold text-white bg-red-500 rounded"
+        >
+          Delete
+        </button>
+      </div>
       <div>
         <Link
           to={`/vinyl/${id}`}
@@ -49,4 +68,4 @@ const CardVinyl = ({
   );
 };
 
-export default CardVinyl;
+export default CardVinylAuth;

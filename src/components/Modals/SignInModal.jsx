@@ -33,7 +33,7 @@ const SignInModal = () => {
 
   const handleForm = async (e) => {
     e.preventDefault();
-    console.log("eee", currentRef[0].value, currentRef[1].value);
+
     try {
       // eslint-disable-next-line no-unused-vars
       const connexion = await signInContext(

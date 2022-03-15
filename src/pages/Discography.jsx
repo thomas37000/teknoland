@@ -1,17 +1,26 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { collection, query, onSnapshot, orderBy } from "firebase/firestore";
 import { db } from "../firebase/config";
 import CardVinyl from "../components/Cards/CardVinyl";
+import CardVinylAuth from "../components/Cards/CardVinylAuth";
+import { UserContext } from "../context/UserContext";
 
 const Discography = () => {
+  // ---------------------------------------------------------------------------
+  // STATES
+  // ---------------------------------------------------------------------------
+  const { currentUser } = useContext(UserContext);
+
   const [vinyls, setVinyls] = useState([]);
-  // console.log("data", vinyls);
   const [loading, setLoading] = useState(true);
 
   const vinylsCollectionRef = collection(db, "vinyls");
   const vinylQuery = query(vinylsCollectionRef, orderBy("reference", "asc"));
 
-  // récupérer les données du Firestore avec snapshot
+  // ---------------------------------------------------------------------------
+  // LIFE CYCLE
+  // récupére les données du Firestore avec snapshot
+  // ---------------------------------------------------------------------------
   function getCards() {
     onSnapshot(vinylQuery, (snapshot) => {
       setVinyls(
@@ -41,10 +50,14 @@ const Discography = () => {
         the vinyls from Teknoland Production
       </h3>
       <div className="flex flex-wrap justify-around mt-10">
-        {vinyls &&
-          vinyls.map((vinyl, index) => (
-            <CardVinyl key={index} {...vinyl} deleteVinyl={vinyl} />
-          ))}
+        {/* si User connecté il a accès au boutton delete sinon c'est la Card normal */}
+        {currentUser === null
+          ? vinyls &&
+            vinyls.map((vinyl, index) => <CardVinyl key={index} {...vinyl} />)
+          : vinyls &&
+            vinyls.map((vinyl, index) => (
+              <CardVinylAuth key={index} {...vinyl} deleteVinyl={vinyl} />
+            ))}
       </div>
     </div>
   );
