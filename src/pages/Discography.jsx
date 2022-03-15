@@ -5,7 +5,7 @@ import CardVinyl from "../components/Cards/CardVinyl";
 
 const Discography = () => {
   const [vinyls, setVinyls] = useState([]);
-  console.log("data", vinyls);
+  // console.log("data", vinyls);
   const [loading, setLoading] = useState(true);
 
   const vinylsCollectionRef = collection(db, "vinyls");
@@ -29,7 +29,7 @@ const Discography = () => {
   useEffect(() => {
     getCards();
     setLoading(false);
-  }, [loading]);
+  }, []);
 
   if (loading) {
     return <h1>loading firebase data...</h1>;
@@ -37,12 +37,14 @@ const Discography = () => {
 
   return (
     <div>
-      <h3>vinyl the vinyls from Teknoland Production</h3>
+      <h3 className="mt-5 mb-2 text-xl font-bold text-green-800">
+        the vinyls from Teknoland Production
+      </h3>
       <div className="flex flex-wrap justify-around mt-10">
         {vinyls &&
           vinyls.map((vinyl, index) => (
             <CardVinyl key={index} {...vinyl} deleteVinyl={vinyl} />
-          ))}{" "}
+          ))}
       </div>
     </div>
   );

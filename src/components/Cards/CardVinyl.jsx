@@ -12,14 +12,20 @@ const CardVinyl = ({
   vinyl,
   id,
 }) => {
-  const deleteVinyl = async () => {
-    // await db.collection("vinyls").doc(vinyl.id).delete();
-    const vinylDoc = deleteDoc(doc(db, "vinyls", vinyl.id));
-    await deleteDoc(vinylDoc);
+  // ---------------------------------------------------------------------------
+  // VINYL DELETED OK, BUT HAVE THIS ERROR MESSAGE WHEN ONCLICK
+  // index.esm2017.js:15823 Uncaught (in promise)
+  // TypeError: Cannot use 'in' operator to search for '_delegate' in undefined
+  // ---------------------------------------------------------------------------
+  const deleteVinyl = async (id) => {
+    const vinylDoc = doc(db, "vinyls", id);
+    await deleteDoc(vinylDoc)
+      .then(() => console.log("vinyl deleted !"))
+      .catch((error) => console.log(error.message));
   };
 
   return (
-    <div className="max-w-xs overflow-hidden rounded shadow-lg">
+    <div className="max-w-xs overflow-hidden rounded shadow-lg bg-zinc-200">
       <img className="w-full" src={image_vinyl} alt={vinyl_name} />
       <div className="px-6 py-4">
         <div className="mb-2 text-2xl font-bold">{vinyl_name}</div>
@@ -31,12 +37,12 @@ const CardVinyl = ({
         <div className="mb-2 text-lg font-bold text-green-600">{reference}</div>
       </div>
       <div className="px-6 pt-4 pb-2">
-        <span className="inline-block px-3 py-1 mb-2 mr-2 text-sm font-semibold text-gray-700 bg-gray-200 rounded-full">
+        <span className="inline-block px-3 py-1 mb-2 mr-2 text-sm font-semibold text-gray-700 bg-gray-300 rounded-full">
           {style.slice(0, 1).map((data, i) => (
             <div key={i}>{data}</div>
           ))}
         </span>
-        <span className="inline-block px-3 py-1 mb-2 mr-2 text-sm font-semibold text-gray-700 bg-gray-200 rounded-full">
+        <span className="inline-block px-3 py-1 mb-2 mr-2 text-sm font-semibold text-gray-700 bg-gray-300 rounded-full">
           {style.slice(1, 2).map((data, i) => (
             <div key={i}>{data}</div>
           ))}
@@ -44,7 +50,7 @@ const CardVinyl = ({
       </div>
       <div>
         <button
-          onClick={() => deleteVinyl()}
+          onClick={() => deleteVinyl(id)}
           className="px-4 py-2 font-bold text-white bg-red-500 rounded"
         >
           Delete

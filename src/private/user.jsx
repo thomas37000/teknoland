@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { UserContext } from "../context/UserContext";
+import FormVinyl from "../components/Form/FormVinyl";
 
 const User = () => {
   const { currentUser } = useContext(UserContext);
@@ -12,9 +13,12 @@ const User = () => {
           <div className="mb-2 text-2xl font-bold">{currentUser.name}</div>
         </div>
         <div className="px-6 py-4">
-          <div className="mb-2 text-xl font-bold text-green-800">{currentUser.email}</div>
+          <div className="mb-2 text-xl font-bold text-green-800">
+            {currentUser.email}
+          </div>
         </div>
       </div>
+      <FormVinyl />
     </div>
   );
 };

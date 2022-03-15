@@ -6,8 +6,11 @@ import { query, orderBy } from "firebase/firestore";
 import { db } from "../../firebase/config";
 
 const CardVinylById = () => {
+  // ---------------------------------------------------------------------------
+  // STATES
+  // ---------------------------------------------------------------------------
   const { id } = useParams();
-  const [vinyls, setVinyls] = useState([]);
+  const [vinyls, setVinyls] = useState({});
   console.log("data", vinyls);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -20,6 +23,17 @@ const CardVinylById = () => {
   // ---------------------------------------------------------------------------
   // LIFE CYCLE
   // ---------------------------------------------------------------------------
+  useEffect(() => {
+    db.child("vinyls").on("value", (snapshot) => {
+      if (snapshot.val() !== null) {
+        setVinyls({
+          ...snapshot.val(),
+        });
+      } else {
+        snapshot({});
+      }
+    });
+  }, [id]);
 
   // function getCards() {
   //   onSnapshot(userQuery, (snapshot) => {
