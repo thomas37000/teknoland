@@ -1,6 +1,7 @@
 import React, { useState, useContext, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { UserContext } from "../../context/UserContext";
+import SignInGoogle from "../Auth/SignInGoogle";
 import eyeClose from "../icons/eye-close.svg";
 import eye from "../icons/eye.svg";
 import "./modal.css";
@@ -81,6 +82,7 @@ const SignInModal = () => {
                       </button>
                     </div>
                     <div className="relative flex-auto p-6">
+                      <SignInGoogle />
                       <form
                         className="w-full px-8 pt-6 pb-8 bg-gray-200 rounded shadow-md"
                         ref={formRef}

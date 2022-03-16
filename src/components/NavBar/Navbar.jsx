@@ -7,6 +7,8 @@ import LogOut from "../Auth/LogOut";
 
 const Navbar = () => {
   const { toggleModals } = useContext(UserContext);
+  const { currentUser } = useContext(UserContext);
+
   const navigate = useNavigate();
 
   const logout = async () => {
@@ -88,11 +90,24 @@ const Navbar = () => {
             to="/private/profil"
             className="block mt-4 mr-4 text-white lg:inline-block lg:mt-0 hover:text-red-500"
           >
-            <img
-              className="inline object-cover w-6 h-6 rounded-full"
-              src="https://buildyourspechere.com/wp-content/uploads/2020/10/placeholder-image-person-jpg.jpg"
-              alt="profil page"
-            />
+            {currentUser === null ? (
+              <img
+                className="inline object-cover w-6 h-6 rounded-full"
+                src="https://buildyourspechere.com/wp-content/uploads/2020/10/placeholder-image-person-jpg.jpg"
+                alt="profil page"
+              />
+            ) : (
+              <>
+                <img
+                  className="inline object-cover w-6 h-6 rounded-full"
+                  src={localStorage.getItem("profileImage")}
+                  alt={localStorage.getItem("name")}
+                />
+                <div className="block mt-4 ml-2 mr-4 text-yellow-300 lg:inline-block lg:mt-0">
+                  {localStorage.getItem("name")}
+                </div>
+              </>
+            )}
 
             <LogOut logout={logout} />
           </Link>

@@ -1,7 +1,7 @@
 import { initializeApp } from "firebase/app";
 import { getStorage } from "firebase/storage";
 //auth from firebase
-import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import { getAuth } from "firebase/auth";
 //database from firebase
 import { getFirestore } from "firebase/firestore";
 
@@ -20,23 +20,5 @@ const firebaseApp = initializeApp(firebaseConfig);
 const projectStorage = getStorage(firebaseApp);
 const db = getFirestore(firebaseApp);
 const Auth = getAuth(firebaseApp);
-const googleProvider = new GoogleAuthProvider();
 
-const signInWithGoogle = () => {
-  signInWithPopup(Auth, googleProvider)
-    .then((result) => {
-      const name = result.user.displayName;
-      const email = result.user.email;
-      const profileImage = result.user.photoURL;
-
-      localStorage.setItem("name", name);
-      localStorage.setItem("email", email);
-      localStorage.setItem("profileImage", profileImage);
-      console.log(result);
-    })
-    .catch((error) => {
-      console.log(error);
-    });
-};
-
-export { projectStorage, Auth, firebaseApp, db, signInWithGoogle };
+export { projectStorage, Auth, firebaseApp, db };
