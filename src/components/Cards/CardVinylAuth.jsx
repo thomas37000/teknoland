@@ -48,21 +48,30 @@ const CardVinylAuth = ({
           ))}
         </span>
       </div>
-      <div>
-        <button
-          onClick={() => deleteVinyl(id)}
-          className="px-4 py-2 font-bold text-white bg-red-500 rounded"
-        >
-          Delete
-        </button>
-      </div>
-      <div>
-        <Link
-          to={`/vinyl/${id}`}
-          className="px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-700"
-        >
-          <button>infos</button>
-        </Link>
+      <div className="flex flex-wrap items-center justify-around">
+        <div>
+          <button
+            onClick={() => deleteVinyl(id)}
+            className="px-4 py-2 font-bold text-white bg-red-500 rounded"
+          >
+            Delete
+          </button>
+        </div>
+        <div>
+          <button
+             // onClick={() => update(id)}
+            className="px-4 py-2 font-bold text-white bg-green-500 rounded"
+          >
+            Edit
+          </button>
+        </div>
+        <div>
+          <Link to={`/vinyl/${id}`}>
+            <button className="px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-700">
+              infos
+            </button>
+          </Link>
+        </div>
       </div>
     </div>
   );
