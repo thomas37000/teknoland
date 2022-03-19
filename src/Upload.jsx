@@ -39,7 +39,7 @@ const Upload = () => {
       },
       async () => {
         await getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-          console.log("Chargement réussi !", downloadURL);
+         // console.log("Chargement réussi !", downloadURL);
           setUrl(downloadURL);
         });
       }
