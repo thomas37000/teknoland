@@ -2,6 +2,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { db } from "../../firebase/config";
 import { deleteDoc, doc } from "firebase/firestore";
+import vinylPlaceholder from "../../vinyl.png";
+
 
 const CardVinylAuth = ({
   artists,
@@ -26,7 +28,16 @@ const CardVinylAuth = ({
 
   return (
     <div className="max-w-xs overflow-hidden rounded shadow-lg bg-zinc-200">
-      <img className="w-full" src={image_vinyl} alt={vinyl_name} />
+      {image_vinyl === "" ? (
+        <img
+          className="w-full"
+          src={vinylPlaceholder}
+          alt="vinyl par défault"
+          style={{ width: 300, height: 300 }}
+        />
+      ) : (
+        <img className="w-full" src={image_vinyl} alt={vinyl_name} />
+      )}
       <div className="px-6 py-4">
         <div className="mb-2 text-2xl font-bold">{vinyl_name}</div>
       </div>
@@ -59,7 +70,7 @@ const CardVinylAuth = ({
         </div>
         <div>
           <button
-             // onClick={() => update(id)}
+            // onClick={() => update(id)}
             className="px-4 py-2 font-bold text-white bg-green-500 rounded"
           >
             Edit

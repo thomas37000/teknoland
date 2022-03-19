@@ -1,7 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { db } from "../../firebase/config";
-import { deleteDoc, doc } from "firebase/firestore";
+import vinylPlaceholder from "../../vinyl.png";
 
 const CardVinyl = ({
   artists,
@@ -13,8 +12,17 @@ const CardVinyl = ({
   id,
 }) => {
   return (
-    <div className="max-w-xs overflow-hidden rounded shadow-lg bg-zinc-200">
-      <img className="w-full" src={image_vinyl} alt={vinyl_name} />
+    <div className="max-w-xs mt-5 overflow-hidden rounded shadow-lg bg-zinc-200">
+      {image_vinyl === "" ? (
+        <img
+          className="w-full"
+          src={vinylPlaceholder}
+          alt="vinyl par défault"
+          style={{ width: 300, height: 300 }}
+        />
+      ) : (
+        <img className="w-full" src={image_vinyl} alt={vinyl_name} />
+      )}
       <div className="px-6 py-4">
         <div className="mb-2 text-2xl font-bold">{vinyl_name}</div>
       </div>
