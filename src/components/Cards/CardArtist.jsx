@@ -1,5 +1,6 @@
 import React from "react";
 // import { Link } from "react-router-dom";
+import artistPlaceholder from "../../artist.png";
 
 const CardArtist = ({
   image,
@@ -13,7 +14,16 @@ const CardArtist = ({
   return (
     <div className="max-w-xs overflow-hidden rounded shadow-lg">
       <div className="flex justify-center">
-        <img src={image} alt={artist_name} />
+        {image === "" || "Source image is unreachable" ? (
+          <img
+            className="w-full"
+            src={artistPlaceholder}
+            alt="vinyl par défault"
+            style={{ width: 300, height: 300 }}
+          />
+        ) : (
+          <img className="w-full" src={image} alt={artist_name} />
+        )}
       </div>
 
       <div className="px-6 py-4">
