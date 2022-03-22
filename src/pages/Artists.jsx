@@ -6,11 +6,14 @@ import CardArtist from "../components/Cards/CardArtist";
 
 const Artists = () => {
   const [artist, setArtist] = useState([]);
- //  console.log("data", artist);
+  //  console.log("data", artist);
   const [loading, setLoading] = useState(true);
 
   const artistsCollectionRef = collection(db, "artists");
-  const artistQuery = query(artistsCollectionRef, orderBy("artist_name", "asc"));
+  const artistQuery = query(
+    artistsCollectionRef,
+    orderBy("artist_name", "asc")
+  );
 
   // récupérer les données du Firestore avec snapshot
   function getCards() {
@@ -37,12 +40,15 @@ const Artists = () => {
   }
 
   return (
-    <div>
+    <>
+      <h3 className="mt-5 mb-2 text-xl font-bold text-green-800">
+        the Artists from Teknoland Production
+      </h3>
       <div className="flex flex-wrap justify-around mt-10">
         {artist &&
           artist.map((all, index) => <CardArtist key={index} {...all} />)}{" "}
       </div>
-    </div>
+    </>
   );
 };
 
