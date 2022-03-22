@@ -70,21 +70,24 @@ const Navbar = () => {
           >
             Contact
           </Link>
-
-          <Link
-            to="/sign-up"
-            className="block mt-4 mr-4 text-white lg:inline-block lg:mt-0 hover:text-red-500"
-            onClick={() => toggleModals("signUp")}
-          >
-            Sign-up
-          </Link>
-          <Link
-            to="/log-in"
-            className="block mt-4 mr-4 text-white lg:inline-block lg:mt-0 hover:text-red-500"
-            onClick={() => toggleModals("signIn")}
-          >
-            Login
-          </Link>
+          {currentUser === null ? (
+            <>
+              <Link
+                to="/sign-up"
+                className="block mt-4 mr-4 text-white lg:inline-block lg:mt-0 hover:text-red-500"
+                onClick={() => toggleModals("signUp")}
+              >
+                Sign-up
+              </Link>
+              <Link
+                to="/log-in"
+                className="block mt-4 mr-4 text-white lg:inline-block lg:mt-0 hover:text-red-500"
+                onClick={() => toggleModals("signIn")}
+              >
+                Login
+              </Link>
+            </>
+          ) : null}
 
           <Link
             to="/private/profil"
@@ -109,7 +112,7 @@ const Navbar = () => {
               </>
             )}
 
-            <LogOut logout={logout} />
+            {currentUser === null ? null : <LogOut logout={logout} />}
           </Link>
         </div>
       </div>
