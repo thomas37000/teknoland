@@ -1,6 +1,6 @@
-import React from "react";
+import React from 'react';
 // import { Link } from "react-router-dom";
-import artistPlaceholder from "../../artist.png";
+import artistPlaceholder from '../../artist.png';
 
 const CardArtist = ({
   image,
@@ -12,33 +12,32 @@ const CardArtist = ({
   id,
 }) => {
   return (
-    <div className="max-w-xs overflow-hidden rounded shadow-lg">
-      <div className="flex justify-center">
-        {image === "" || "Source image is unreachable" ? (
+    <div className='max-w-xs overflow-hidden rounded shadow-lg'>
+      <div className='flex justify-center'>
+        {image === '' || 'Source image is unreachable' ? (
           <img
-            className="w-full"
+            className='w-full'
             src={artistPlaceholder}
-            alt="vinyl par défault"
+            alt='vinyl par défault'
             style={{ width: 300, height: 300 }}
           />
         ) : (
-          <img className="w-full" src={image} alt={artist_name} />
+          <img className='w-full' src={image} alt={artist_name} />
         )}
       </div>
 
-      <div className="px-6 py-4">
-        <div className="mb-2 text-xl font-bold">{artist_name}</div>
+      <div className='px-6 py-4'>
+        <div className='mb-2 text-xl font-bold'>{artist_name}</div>
       </div>
 
-      <div className="px-6 pt-4 pb-2">
-        <span className="inline-block px-3 py-1 mb-2 mr-2 text-sm font-semibold text-gray-700 bg-gray-200 rounded-full">
-          #
+      <div className='px-6 pt-4 pb-2'>
+        <span className='inline-block px-3 py-1 mb-2 mr-2 text-sm font-semibold text-gray-700 bg-gray-200 rounded-full'>
           {style.slice(0, 1).map((data, i) => (
             <div key={i}>{data}</div>
           ))}
         </span>
-        <span className="inline-block px-3 py-1 mb-2 mr-2 text-sm font-semibold text-gray-700 bg-gray-200 rounded-full">
-          #{country}
+        <span className='inline-block px-3 py-1 mb-2 mr-2 text-sm font-semibold text-gray-700 bg-gray-200 rounded-full'>
+          {country}
         </span>
       </div>
       {/* <div>

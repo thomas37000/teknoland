@@ -12,7 +12,7 @@ const CardVinyl = ({
   id,
 }) => {
   return (
-    <div className='max-w-xs mt-5 overflow-hidden rounded shadow-lg bg-zinc-200'>
+    <div className='max-w-xs mb-4 overflow-hidden rounded shadow-lg bg-zinc-200'>
       {image_vinyl === '' ? (
         <img
           className='w-full'
@@ -23,34 +23,49 @@ const CardVinyl = ({
       ) : (
         <img className='w-full' src={image_vinyl} alt={vinyl_name} />
       )}
-      <div className='px-6 py-4'>
-        <div className='mb-2 text-2xl font-bold'>{vinyl_name}</div>
-        <div className='mb-2 text-lg font-bold text-green-600'>{reference}</div>
+
+      <div className='flex items-center justify-center mt-2'>
+        Titre:
+        <div className='ml-1 text-2xl font-bold'>{vinyl_name}</div>
       </div>
-      <div className='px-6 py-4'>
-        <div className='mb-2 text-xl font-bold text-green-800'>{artists}</div>
+
+      <div className='flex items-center justify-center'>
+        référence:
+        <div className='ml-1 text-lg font-bold text-green-600'>{reference}</div>
       </div>
-      <div className='px-6 pt-4 pb-2'>
-        <span className='inline-block px-3 py-1 mb-2 mr-2 text-sm font-semibold text-gray-700 bg-gray-300 rounded-full'>
-          {style.slice(0, 1).map((data, i) => (
-            <div key={i}>{data}</div>
-          ))}
-        </span>
-        <span className='inline-block px-3 py-1 mb-2 mr-2 text-sm font-semibold text-gray-700 bg-gray-300 rounded-full'>
-          {style.slice(1, 2).map((data, i) => (
-            <div key={i}>{data}</div>
-          ))}
-        </span>
+
+      <div className='px-6 py-4'>
+        artiste(s):
+        {Array.isArray(artists) ? (
+          artists.map((data, i) => (
+            <div key={i} className='font-bold text-green-800 text-l'>
+              {data}
+            </div>
+          ))
+        ) : (
+          <div className='mb-2 text-xl font-bold text-green-800'>{artists}</div>
+        )}
+      </div>
+
+      <div>styles:</div>
+      <div className='py-2'>
+        {style.map((data, i) => (
+          <span
+            key={i}
+            className='inline-block px-3 py-1 mb-2 mr-2 text-sm font-semibold text-gray-700 bg-gray-300 rounded-full'
+          >
+            {data}
+          </span>
+        ))}
       </div>
 
       {/* <div>
-        <Link
-          to={`/vinyl/${id}`}
-          className='px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-700'
-        >
-          <button>infos</button>
-        </Link>
-      </div> */}
+          <Link to={`/vinyl/${id}`}>
+            <button className='px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-700'>
+              infos
+            </button>
+          </Link>
+        </div> */}
     </div>
   );
 };
