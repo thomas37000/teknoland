@@ -1,9 +1,9 @@
-import React, { useContext } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { Auth } from "../../firebase/config";
-import { signOut } from "firebase/auth";
-import { UserContext } from "../../context/UserContext";
-import LogOut from "../Auth/LogOut";
+import React, { useContext } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { Auth } from '../../firebase/config';
+import { signOut } from 'firebase/auth';
+import { UserContext } from '../../context/UserContext';
+import LogOut from '../Auth/LogOut';
 
 const Navbar = () => {
   const { toggleModals } = useContext(UserContext);
@@ -14,75 +14,68 @@ const Navbar = () => {
   const logout = async () => {
     try {
       await signOut(Auth);
-      navigate("/");
+      navigate('/');
     } catch {
-      alert("vider votre cache internet.");
+      alert('vider votre cache internet.');
     }
   };
 
   return (
-    <nav className="flex flex-wrap items-center justify-between p-4 bg-zinc-800">
-      <div className="flex items-center flex-shrink-0 mr-6 text-white">
-        <Link to="/">
-          <span className="text-xl font-semibold tracking-tight">
+    <nav className='flex flex-wrap items-center justify-between p-4 bg-zinc-800'>
+      <div className='flex items-center flex-shrink-0 mr-6 text-white'>
+        <Link to='/'>
+          <span className='text-xl font-semibold tracking-tight'>
             Teknoland Production
           </span>
         </Link>
       </div>
-      <div className="block lg:hidden">
-        <button className="flex items-center px-3 py-2 text-white border rounded border-black-400 hover:text-green-500 hover:border-white">
+      <div className='block lg:hidden'>
+        <button className='flex items-center px-3 py-2 text-white border rounded border-black-400 hover:text-green-500 hover:border-white'>
           <svg
-            className="w-3 h-3 fill-current"
-            viewBox="0 0 20 20"
-            xmlns="http://www.w3.org/2000/svg"
+            className='w-3 h-3 fill-current'
+            viewBox='0 0 20 20'
+            xmlns='http://www.w3.org/2000/svg'
           >
             <title>Menu</title>
-            <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z" />
+            <path d='M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z' />
           </svg>
         </button>
       </div>
-      <div className="flex-grow block w-full lg:flex lg:items-center lg:w-auto">
-        <div className="text-sm lg:flex-grow">
+      <div className='flex-grow block w-full lg:flex lg:items-center lg:w-auto'>
+        <div className='text-sm lg:flex-grow'>
           <Link
-            to="/"
-            className="block mt-4 mr-4 text-white lg:inline-block lg:mt-0 hover:text-red-500"
-          >
-            Home
-          </Link>
-
-          <Link
-            to="/discography"
-            className="block mt-4 mr-4 text-green-500 lg:inline-block lg:mt-0 hover:text-white"
+            to='/'
+            className='block mt-4 mr-4 text-green-500 lg:inline-block lg:mt-0 hover:text-white'
           >
             Discography
           </Link>
 
           <Link
-            to="/artists"
-            className="block mt-4 mr-4 text-green-500 lg:inline-block lg:mt-0 hover:text-white"
+            to='/artists'
+            className='block mt-4 mr-4 text-green-500 lg:inline-block lg:mt-0 hover:text-white'
           >
             Artists
           </Link>
 
           <Link
-            to="/contact"
-            className="block mt-4 mr-4 text-green-500 lg:inline-block lg:mt-0 hover:text-white"
+            to='/contact'
+            className='block mt-4 mr-4 text-green-500 lg:inline-block lg:mt-0 hover:text-white'
           >
             Contact
           </Link>
           {currentUser === null ? (
             <>
               <Link
-                to="/sign-up"
-                className="block mt-4 mr-4 text-white lg:inline-block lg:mt-0 hover:text-red-500"
-                onClick={() => toggleModals("signUp")}
+                to='/sign-up'
+                className='block mt-4 mr-4 text-white lg:inline-block lg:mt-0 hover:text-red-500'
+                onClick={() => toggleModals('signUp')}
               >
                 Sign-up
               </Link>
               <Link
-                to="/log-in"
-                className="block mt-4 mr-4 text-white lg:inline-block lg:mt-0 hover:text-red-500"
-                onClick={() => toggleModals("signIn")}
+                to='/log-in'
+                className='block mt-4 mr-4 text-white lg:inline-block lg:mt-0 hover:text-red-500'
+                onClick={() => toggleModals('signIn')}
               >
                 Login
               </Link>
@@ -90,24 +83,24 @@ const Navbar = () => {
           ) : null}
 
           <Link
-            to="/private/profil"
-            className="block mt-4 mr-4 text-white lg:inline-block lg:mt-0 hover:text-red-500"
+            to='/private/profil'
+            className='block mt-4 mr-4 text-white lg:inline-block lg:mt-0 hover:text-red-500'
           >
             {currentUser === null ? (
               <img
-                className="inline object-cover w-6 h-6 rounded-full"
-                src="https://buildyourspechere.com/wp-content/uploads/2020/10/placeholder-image-person-jpg.jpg"
-                alt="profil page"
+                className='inline object-cover w-6 h-6 rounded-full'
+                src='https://buildyourspechere.com/wp-content/uploads/2020/10/placeholder-image-person-jpg.jpg'
+                alt='profil page'
               />
             ) : (
               <>
                 <img
-                  className="inline object-cover w-6 h-6 rounded-full"
-                  src={localStorage.getItem("profileImage")}
-                  alt={localStorage.getItem("name")}
+                  className='inline object-cover w-6 h-6 rounded-full'
+                  src={localStorage.getItem('profileImage')}
+                  alt={localStorage.getItem('name')}
                 />
-                <div className="block mt-4 ml-2 mr-4 text-yellow-300 lg:inline-block lg:mt-0">
-                  {localStorage.getItem("name")}
+                <div className='block mt-4 ml-2 mr-4 text-yellow-300 lg:inline-block lg:mt-0'>
+                  {localStorage.getItem('name')}
                 </div>
               </>
             )}
